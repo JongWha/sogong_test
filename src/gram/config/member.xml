@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+	<resultMap id="memberMap" type="gram.model.domain.Member">
+		<result property="memberNo" column="user_num" />
+		<result property="memberId" column="user_id" />
+		<result property="memberPassword" column="user_password" />
+		<result property="memberStatus" column="user_status" />
+	</resultMap>
+	
+	<!-- MemberController checkMember -->
+	
+	<select id="checkMember" parameterType = "String" resultType="int">
+		SELECT count(*) from user where user_id = #{memberId}
+	</select>
+
+	<!-- MemberController joinMember -->
+	
+	<select id="joinMember" parameterType = "java.util.HashMap" resultType="int">
+		INSERT INTO user(user_id, user_password, user_status) VALUES (#{memberId},#{memberPassword},#{memberStatus})
+	</select>
+	
+	<!-- MemberController loginMember -->
+	
+	<select id="loginMember" parameterType = "java.util.HashMap" resultType="int">
+		SELECT count(*) FROM user WHERE user_id = #{memberId} AND user_password = #{memberPassword}
+	</select>
+	
+	<!-- MemberController getMemberNo -->
+	
+	<select id="getMemberNo" parameterType = "String" resultType="int">
+		SELECT user_num FROM user WHERE user_id = #{memberId}
+	</select>
+	
+	<!-- MemberController getMember -->
+	
+	<select id="getMember" parameterType ="java.util.HashMap" resultType="gram.model.domain.Member">
+		SELECT * FROM user where user_id = #{memberId} AND user_password = #{memberPassword}
+	</select>
+
+</mapper>

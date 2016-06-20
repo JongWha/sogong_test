@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="truck">
+<resultMap id = "truckMap" type="gram.model.domain.Truck">
+
+		<result property="memberNo" column = "user_num"/>
+		<result property="truckNo" column="truck_num" />
+		<result property="truckTitle" column="truck_name" />
+		<result property="truckInfo" column="truck_info" />
+		<result property="truckRate" column="truck_rate" />
+		<result property="truckPic" column="truck_pic"/>
+</resultMap>
+
+	<!-- TruckController createTruck -->
+	<select id="createTruck" parameterType="java.util.HashMap"
+		resultType="int">
+		INSERT INTO truck (user_num, truck_name, truck_info, truck_pic) VALUES
+		(#{memberNo},#{truckTitle},#{truckInfo},#{truckPic})
+	</select>
+
+	<!-- TruckContrller checkTruck -->
+	<select id="checkTruck" parameterType="Integer" resultType="int">
+		SELECT count(*) FROM truck WHERE user_num = #{memberNo}
+	</select>
+	
+	<!-- TruckController getTruck -->
+	<select id ="getTruck" parameterType="Integer" resultType="java.util.HashMap">
+		SELECT * FROM truck WHERE user_num = #{memberNo}
+	</select>
+</mapper>
