@@ -16,8 +16,6 @@
    <servlet>
   	<servlet-name>MemberView</servlet-name>
   	<servlet-class>gram.view.MemberView</servlet-class>
-   	<servlet-name>OrderView</servlet-name>
-   	<servlet-class>gram.view.OrderView</servlet-class>
    </servlet>
    
     <servlet>
@@ -29,15 +27,13 @@
   	<servlet-name>TruckView</servlet-name>
   	<url-pattern>/truck</url-pattern>
   </servlet-mapping>
+  
 
   <servlet-mapping>
   	<servlet-name>MemberView</servlet-name>
   	<url-pattern>/member</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>OrderView</servlet-name>
-  	<url-pattern>/order</url-pattern>
-  </servlet-mapping>
+  
  
  <resource-ref>
  <res-ref-name>jdbc/testdb</res-ref-name>

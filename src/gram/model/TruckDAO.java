@@ -1,5 +1,7 @@
 package gram.model;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -8,6 +10,7 @@ import javax.servlet.http.Part;
 
 import org.apache.ibatis.session.SqlSession;
 
+import gram.model.domain.Truck;
 import gram.util.DAOFactory;
 
 public class TruckDAO {
@@ -28,28 +31,21 @@ public class TruckDAO {
 		}
 	}
 
-	public static boolean createTruck(int inputMemberNo, String inputTruckTitle, String inputTruckInfo, Part filePart) throws IOException {
+	public static boolean createTruck(int inputMemberNo, String inputTruckTitle, String inputTruckInfo, String fileName, String truckLati, String truckLong ) throws IOException {
 		// TODO Auto-generated method stub
 		SqlSession sqlSession = DAOFactory.getSqlSession(true);
 		
 		try{
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			
-			InputStream inputStream = null;
-			if(filePart != null){
-				
-				System.out.println(filePart.getName());
-				System.out.println(filePart.getSize());
-				System.out.println(filePart.getContentType());
-				inputStream = filePart.getInputStream();		
-			}
-			
 			map.put("memberNo", inputMemberNo);
 			map.put("truckTitle", inputTruckTitle);
 			System.out.println(inputTruckTitle);
 			System.out.println("DAO");
 			map.put("truckInfo", inputTruckInfo);
-			map.put("truckPic", inputStream);
+			map.put("truckPicName", fileName);
+			map.put("truckLong", truckLong);
+			map.put("truckLati", truckLati);
 			
 			int createCheck = 0;
 			
@@ -67,6 +63,41 @@ public class TruckDAO {
 			sqlSession.close();
 		}
 		
+	}
+
+	public static Truck getTruck(int inputMemberNo) {
+		// TODO Auto-generated method stub
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+		
+		try{
+			
+			int memberNo = inputMemberNo;
+			
+			return (Truck) sqlSession.selectOne(namespace + ".getTruck", memberNo);
+		
+		}finally{
+		
+			sqlSession.close();
+		
+		}
+	}
+	
+	public static int getTruckNo(int inputMemberNo){
+		
+		SqlSession sqlSession = DAOFactory.getSqlSession(true);
+
+		try{
+
+			int memberNo = inputMemberNo;
+
+			return (Integer) sqlSession.selectOne(namespace + ".getTruckNo", memberNo);
+
+		}finally{
+
+			sqlSession.close();
+
+		}
 	}
 	
 

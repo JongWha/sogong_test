@@ -47,7 +47,7 @@
 				<c:if test="${sessionScope.memberStatus == 0}">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="main.jsp">Map</a></li>
-						<li><a href="admin.jsp">Admin</a></li>
+						<li><a href="/truck?action=getTruck">Admin</a></li>
 						<li><a><span>'${sessionScope.memberId}' </span><span>님
 									환영합니다.</span></a></li>
 						<li><a href="#" onclick="Auth.logout();">LogOut</a></li>

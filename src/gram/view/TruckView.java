@@ -61,9 +61,25 @@ public class TruckView extends HttpServlet {
 		switch(action){
 		case "createTruck" :
 			System.out.println("11");
+			String inputTitle = req.getParameter("inputTruckLatitude");
+			System.out.println(inputTitle);
+			String inputTitle2 = req.getParameter("inputTruckLongitude");
+			System.out.println(inputTitle2);
+
 			TruckController.createTruck(req, res);
 			break;
+			
+		case "getTruck" :
+			TruckController.getTruck(req,res);
+			break;
+			
+		case "getTruckLocation" :
+			TruckController.getTruckLocation(req,res);
+			break;
+		
 		}
+		
+		
 		
 	}
 

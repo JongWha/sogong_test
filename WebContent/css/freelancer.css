@@ -454,3 +454,5 @@ html, body.admin{height:100%; width:100%}
 
 #admin {width:100%;  height:100%; background-color: #18bc9c;}
 #admin .container .title {text-align : center; font-size:2.5em; color:#fff;}
+
+#inputTruckMap {width: 770px; height: 380px;}
